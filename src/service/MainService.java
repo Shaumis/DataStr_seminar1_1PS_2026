@@ -1,17 +1,18 @@
 package service;
 
 import datastr.MyArrayList;
+import model.Student;
 
 public class MainService {
 
 	public static void main(String[] args) {
-		MyArrayList symbols = new MyArrayList(2);
+		MyArrayList<Character> symbols = new MyArrayList<Character>(2);
 		symbols.add('a');
 		symbols.add('b');
 		symbols.add('c');
 		try {
 			symbols.print();
-			symbols.add('Z',1);
+			symbols.add('Z', 1);
 			symbols.print();
 			symbols.remove(2);
 			symbols.print();
@@ -23,10 +24,19 @@ public class MainService {
 			symbols.begone();
 			symbols.add('W');
 			symbols.print();
-			
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		MyArrayList<Student> allStudents = new MyArrayList<Student>();
+		allStudents.add(new Student("Mikus", "Abele"));
+		allStudents.add(new Student("Aleksis", "Padans"));
+		allStudents.add(new Student("Janis", "Jansons"));
+		try {
+			allStudents.add(new Student("Ouch", "Ouchie"), 0);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}
-
 }
+
