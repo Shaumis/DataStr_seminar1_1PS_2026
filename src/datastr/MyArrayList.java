@@ -100,7 +100,7 @@ public class MyArrayList {
 			howManyElements++;
 		}
 	}
-	
+
 	public void remove(int index)throws Exception {
 		if(isEmpty()) {
 			throw(new Exception("Saraksts ir tukšs"));
@@ -118,6 +118,14 @@ public class MyArrayList {
 		}
 		list[howManyElements-1] = ' ';
 		howManyElements--;
-		}
-
+	}
+public void print()throws Exception {
+	if(isEmpty()) {
+		throw(new Exception("Saraksts ir tukšs"));
+	}
+	for(int i = 0; i < howManyElements;i++) {
+		System.out.println(list[i] + " ");
+	}
+	System.out.println();
+}
 }
