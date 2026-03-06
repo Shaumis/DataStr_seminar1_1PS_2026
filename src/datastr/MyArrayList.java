@@ -101,9 +101,9 @@ public class MyArrayList {
 		}
 	}
 
-	public void remove(int index)throws Exception {
-		if(isEmpty()) {
-			throw(new Exception("Saraksts ir tukšs"));
+	public void remove(int index) throws Exception {
+		if (isEmpty()) {
+			throw (new Exception("Saraksts ir tukšs"));
 		}
 		if (index < 0) {
 			throw (new Exception("Nevar dzēst elementu, jo index ir negatīvs"));
@@ -112,20 +112,36 @@ public class MyArrayList {
 		if (index > howManyElements) {
 			throw (new Exception("Nevar dzēst jaunu elementu, nav vietas!"));
 		}
-		
+
 		for (int i = howManyElements; i < index; i++) {
-			list[i] = list[i + 1];;
+			list[i] = list[i + 1];
+			;
 		}
-		list[howManyElements-1] = ' ';
+		list[howManyElements - 1] = ' ';
 		howManyElements--;
 	}
-public void print()throws Exception {
-	if(isEmpty()) {
-		throw(new Exception("Saraksts ir tukšs"));
+
+	public char get(int index) throws Exception {
+		if (isEmpty()) {
+			throw (new Exception("Saraksts ir tukšs"));
+		}
+		if (index < 0) {
+			throw (new Exception("Nevar atrast elementu, jo index ir negatīvs"));
+		}
+
+		if (index >= howManyElements) {
+			throw (new Exception("Nevar atrast elementu, jo index par lielu!"));
+		}
+		return list[index];
 	}
-	for(int i = 0; i < howManyElements;i++) {
-		System.out.print(list[i] + " ");
+
+	public void print() throws Exception {
+		if (isEmpty()) {
+			throw (new Exception("Saraksts ir tukšs"));
+		}
+		for (int i = 0; i < howManyElements; i++) {
+			System.out.print(list[i] + " ");
+		}
+		System.out.println();
 	}
-	System.out.println();
-}
 }
