@@ -1,97 +1,123 @@
 package datastr;
 
-
 public class MyArrayList {
-	//1.mainīgie
+	// 1.mainīgie
 	private char[] list;
-	private final int DEFAULT_SIZE = 8;//pec noklusjeuma bus 8 sunu masivs, ja lietotajs pats neizdomas citu skaitu
-	private int size = DEFAULT_SIZE;//8
+	private final int DEFAULT_SIZE = 8;// pec noklusjeuma bus 8 sunu masivs, ja lietotajs pats neizdomas citu skaitu
+	private int size = DEFAULT_SIZE;// 8
 	private int howManyElements = 0;
-	
-	//2. konstruktori
+
+	// 2. konstruktori
 	public MyArrayList() {
 		list = new char[size];
 	}
-	
+
 	public MyArrayList(int inputSize) {
-		if(inputSize > 0) {
+		if (inputSize > 0) {
 			size = inputSize;
 		}
-				
+
 		list = new char[size];
 	}
-	
-	//3. pamatalgoritmu funkcijas
+
+	// 3. pamatalgoritmu funkcijas
 	public boolean isEmpty() {
-		//1. garais if-else
-		/*if(howManyElements == 0) {
-			return true;//ir tukšs saraksts
-		}
-		else
-		{
-			return false;//nav tukšs saraksts
-		}*/
-		
-		//2. īsais if-else
-		//return (howManyElements == 0) ?  true : false;
-		
-		//vel viens piemērs īsajam if un else
-		/*int aaa;
-		if(howManyElements == 0) {
-			aaa = 4 * 30;
-		}
-		else
-		{
-			aaa = 1000/4;
-		}
-		
-		aaa = (howManyElements == 0) ? 4 * 30 : 1000/4;*/
-		
-		//3.pats efektīvakais veids
+		// 1. garais if-else
+		/*
+		 * if(howManyElements == 0) { return true;//ir tukšs saraksts } else { return
+		 * false;//nav tukšs saraksts }
+		 */
+
+		// 2. īsais if-else
+		// return (howManyElements == 0) ? true : false;
+
+		// vel viens piemērs īsajam if un else
+		/*
+		 * int aaa; if(howManyElements == 0) { aaa = 4 * 30; } else { aaa = 1000/4; }
+		 * 
+		 * aaa = (howManyElements == 0) ? 4 * 30 : 1000/4;
+		 */
+
+		// 3.pats efektīvakais veids
 		return (howManyElements == 0);
-		
+
 	}
-	
-	
+
 	public boolean isFull() {
 		return (howManyElements == size);
 	}
-	
-	
+
 	private void resize() {
 
-		int largeSize = (howManyElements < 100)? size * 2 : (int)(size * 1.5);
-		
+		int largeSize = (howManyElements < 100) ? size * 2 : (int) (size * 1.5);
+
 		char[] largeList = new char[largeSize];
-		
-		
-		for(int i = 0; i < howManyElements; i++) {
+
+		for (int i = 0; i < howManyElements; i++) {
 			largeList[i] = list[i];
 		}
-		
+
 		list = largeList;
-		System.gc();//izdzēsis no RAM atmiņas mazo masīvu, jo tam vairs nav mainīgais piesaistīts
+		System.gc();// izdzēsis no RAM atmiņas mazo masīvu, jo tam vairs nav mainīgais piesaistīts
 		size = largeSize;
-		
+
 	}
-	
+
 	public void add(char element) {
-		if(isFull()) {
+		if (isFull()) {
 			resize();
 		}
-		
+
 		list[howManyElements] = element;
 		howManyElements++;
-		
-		
-		
+
+		// īsaks pieraksts, apvienot abas koda rindas vienā->list[howManyElements++] =
+		// element;
+
 	}
-	
-	
+
+	// funkcijas definīcija add(char element, int index)
+
 	public void add(char element, int index) throws Exception {
-		if(index < 0) {
+		if (index < 0) {
 			throw (new Exception("Nevar pievienot elementu, jo index ir negatīvs"));
 		}
+
+		if (index > howManyElements) {
+			throw (new Exception("Nevar pievienot jaunu elementu, nav vietas!"));
+		}
+		if (index == howManyElements) {
+			add(element);
+		} else {
+			if (isFull()) {
+				resize();
+			}
+
+			for (int i = howManyElements; i > index; i--) {
+				list[i] = list[i - 1];
+			}
+			list[index] = element;
+			howManyElements++;
+		}
 	}
+	
+	public void remove(int index)throws Exception {
+		if(isEmpty()) {
+			throw(new Exception("Saraksts ir tukšs"));
+		}
+		if (index < 0) {
+			throw (new Exception("Nevar dzēst elementu, jo index ir negatīvs"));
+		}
+
+		if (index > howManyElements) {
+			throw (new Exception("Nevar dzēst jaunu elementu, nav vietas!"));
+		}
+		
+		for (int i = howManyElements; i < index; i++) {
+			list[i] = list[i + 1];;
+		}
+		list[howManyElements-1] = ' ';
+		howManyElements--;
+		}
 
 }
