@@ -115,7 +115,6 @@ public class MyArrayList {
 
 		for (int i = howManyElements; i < index; i++) {
 			list[i] = list[i + 1];
-			;
 		}
 		list[howManyElements - 1] = ' ';
 		howManyElements--;
@@ -176,5 +175,13 @@ public class MyArrayList {
 				}
 			}
 		}
+	}
+
+	public void begone() {
+		list = null;
+		System.gc();
+		howManyElements = 0;
+		size = DEFAULT_SIZE;
+		list = new char[size];
 	}
 }

@@ -16,9 +16,12 @@ public class MainService {
 			symbols.remove(2);
 			symbols.print();
 			System.out.println(symbols.get(1));
-			System.out.println(symbols.search('c'));
+			System.out.println(symbols.search('Z'));
 			System.out.println(symbols.getNextOne('a'));
 			symbols.sort();
+			symbols.print();
+			symbols.begone();
+			symbols.add('W');
 			symbols.print();
 			
 		} catch (Exception e) {
