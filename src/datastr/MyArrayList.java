@@ -121,19 +121,6 @@ public class MyArrayList {
 		howManyElements--;
 	}
 
-	public char get(int index) throws Exception {
-		if (isEmpty()) {
-			throw (new Exception("Saraksts ir tukšs"));
-		}
-		if (index < 0) {
-			throw (new Exception("Nevar atrast elementu, jo index ir negatīvs"));
-		}
-
-		if (index >= howManyElements) {
-			throw (new Exception("Nevar atrast elementu, jo index par lielu!"));
-		}
-		return list[index];
-	}
 
 	public void print() throws Exception {
 		if (isEmpty()) {
@@ -143,5 +130,29 @@ public class MyArrayList {
 			System.out.print(list[i] + " ");
 		}
 		System.out.println();
+	}
+	public char get(int index) throws Exception {
+		if (isEmpty()) {
+			throw (new Exception("Saraksts ir tukšs"));
+		}
+		if (index < 0) {
+			throw (new Exception("Nevar atrast elementu, jo index ir negatīvs"));
+		}
+		
+		if (index >= howManyElements) {
+			throw (new Exception("Nevar atrast elementu, jo index par lielu!"));
+		}
+		return list[index];
+	}
+	public int search(char element) throws Exception{
+		if (isEmpty()) {
+			throw (new Exception("Saraksts ir tukšs"));
+	}
+		for(int i =0;i<howManyElements;i++) {
+			if(list[i]==element) {
+				return i;
+			}
+		}
+		throw(new Exception("Nav atrasts"));
 	}
 }
